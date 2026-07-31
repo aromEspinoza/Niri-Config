@@ -1,0 +1,34 @@
+// 1. Cargar variables primero para que los demás archivos puedan usarlas
+//include "config.d/variables.kdl"
+
+prefer-no-csd
+
+
+// 2. Cargar el resto de la configuración modular
+include "./input.kdl"
+include "./output.kdl"
+include "./binds.kdl"
+include "./layout.kdl"
+include "./noctalia.kdl"
+
+// Arranques
+spawn-at-startup "noctalia"
+
+
+// Rutas globales
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// Configuración obligatoria de Noctalia para notificaciones
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+cursor {
+    xcursor-theme "Qogir-white-cursors"
+    xcursor-size 22
+}
+
+// Quitar atajos al inicio
+hotkey-overlay {
+    // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
+    skip-at-startup
+}

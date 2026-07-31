@@ -1,0 +1,13 @@
+// Configuración para la pantalla de tu Laptop (15 pulgadas)
+output "eDP-1" {
+    mode "1920x1080@120.030"
+    scale 1.25
+    position x=0 y=0
+}
+
+// Configuración para tu Monitor Externo (20 pulgadas)
+// Nota: Reemplaza "HDMI-A-1" por el nombre real que te dio `niri msg outputs`
+output "HDMI-A-1" {
+    scale 1.0
+    position x=1536 y=0
+}
