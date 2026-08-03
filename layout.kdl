@@ -1,15 +1,16 @@
+// --- CORE SETTINGS ---
 layout {
     gaps 10
     center-focused-column "never"
+    default-column-width { proportion 0.5; }
 
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
     }
-    default-column-width { proportion 0.5; }
 
-    // Fondo transparente exigido por Noctalia (Opción 2)
+    // Requerido por Noctalia
     background-color "transparent"
 
     focus-ring {
@@ -34,22 +35,15 @@ layout {
     }
 
     tab-indicator {
-        // 1. Posición superior (estilo navegador)
-        position "right"
-
-        // 3. Grosor notable para la pestaña activa
+        position "left"
         width 4
-
-        // 4. Introduce una separación física entre cada pestaña del grupo
-        gaps-between-tabs 4
-
-        // 5. Bordes redondeados en las esquinas de los indicadores
-        corner-radius 2
-
+        gaps-between-tabs 2
+        corner-radius 3
+        gap -7
+        place-within-column
     }
 }
 
-// Desactivar sombras de los espacios de trabajo en el Overview (Noctalia)
 overview {
     workspace-shadow {
         off
@@ -57,16 +51,15 @@ overview {
 }
 
 animations {
-    // Apertura y cierre: Mantiene el impacto visual ("Snap") pero con un golpe y rebote más suaves
-    window-open {
-        spring damping-ratio=0.65 stiffness=900 epsilon=0.0001
+    // Apertura y cierre: Efecto snap con rebote suave
+    window-open { 
+        spring damping-ratio=0.65 stiffness=900 epsilon=0.0001 
     }
-    window-close {
-        spring damping-ratio=0.65 stiffness=900 epsilon=0.0001
+    window-close { 
+        spring damping-ratio=0.65 stiffness=900 epsilon=0.0001 
     }
 
-    // Movimiento general y espacios de trabajo: 
-    // Fluido y rápido, con una amortiguación mayor (0.75) para no marear al deslizar
+    // Movimiento y espacios de trabajo: Fluido con mayor amortiguación
     workspace-switch { 
         spring damping-ratio=0.75 stiffness=800 epsilon=0.0001 
     }
@@ -81,31 +74,6 @@ animations {
     }
 }
 
-
-// --- WINDOW RULES ---
-window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
-}
-
-// --- REGLAS DE NOCTALIA ---
-
-window-rule {
-    geometry-corner-radius 5
-    clip-to-geometry true
-    
-    // Opacidad para ventanas desenfocadas
-    opacity 0.90
-    
-    background-effect {
-        blur true
-        xray true
-    }
-}
-
 blur {
     passes 2
     offset 3.0
@@ -113,13 +81,25 @@ blur {
     saturation 1.0
 }
 
-// 2. Wallpaper Estacionario (Opción 2)
+debug {
+    // Permite acciones de notificación y activación desde Noctalia
+    honor-xdg-activation-with-invalid-serial
+}
+
+
+// --- LAYER RULES ---
+
+// Wallpapers al fondo (Estacionario y Animado)
 layer-rule {
     match namespace="^noctalia-wallpaper*"
     place-within-backdrop true
 }
+layer-rule {
+    match namespace="^mpvpaper$"
+    place-within-backdrop true
+}
 
-// 3. Desenfoque para la barra y los paneles de Noctalia
+// Desenfoque para barra y paneles de Noctalia
 layer-rule {
     match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
     background-effect {
@@ -128,23 +108,36 @@ layer-rule {
 }
 
 
+// --- WINDOW RULES ---
+
+// 1. Reglas Globales (Aplican a todas las ventanas)
+window-rule {
+    geometry-corner-radius 7
+    clip-to-geometry true
+    opacity 0.90
+    
+    background-effect {
+        blur true
+        xray true
+    }
+}
 window-rule {
     match app-id="^*$"
     draw-border-with-background false
 }
 
-
-// Floating Noctalia settings window.
+// 2. Reglas Específicas por Aplicación
 window-rule {
-  match app-id="dev.noctalia.Noctalia"
-  open-floating true
-  default-column-width { fixed 1080; }
-  default-window-height { fixed 920; }
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
 }
-
-debug {
-  // Allows notification actions and window activation from Noctalia.
-  honor-xdg-activation-with-invalid-serial
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
 }
-
-
+window-rule {
+    match app-id="dev.noctalia.Noctalia"
+    open-floating true
+    default-column-width { fixed 950; }
+    default-window-height { fixed 800; }
+}
