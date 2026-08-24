@@ -26,11 +26,12 @@ binds {
     Mod+Ctrl+C { spawn "noctalia" "msg" "caffeine-toggle"; }
 
 
+    Mod+Alt+S { spawn "noctalia" "msg" "panel-toggle" "control-center" "system"; }
     Mod+Alt+V { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
     Mod+Alt+W { spawn "noctalia" "msg" "panel-toggle" "wallpaper"; }
     Mod+Alt+Shift+W { spawn "noctalia" "msg" "wallpaper-random"; }
     Mod+Alt+L { spawn "noctalia" "msg" "session" "lock"; }
-    Mod+Alt+S { spawn "noctalia" "msg" "session" "lock-and-suspend"; }
+    // Mod+Alt+S { spawn "noctalia" "msg" "session" "lock-and-suspend"; }
 
     Mod+Alt+M { spawn "noctalia" "msg" "panel-toggle" "control-center" "media"; }
     Mod+Alt+P { spawn "noctalia" "msg" "media" "toggle"; }
@@ -177,8 +178,8 @@ binds {
     Mod+Shift+Minus { set-window-height "-10%"; }
     Mod+Shift+Plus { set-window-height "+10%"; }
 
-    Mod+Shift+V       { toggle-window-floating; }
-    Mod+V { switch-focus-between-floating-and-tiling; }
+    Mod+V       { toggle-window-floating; }
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
     Mod+W { toggle-column-tabbed-display; }
 
     Print { screenshot; }

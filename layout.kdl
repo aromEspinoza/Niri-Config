@@ -1,6 +1,6 @@
 // --- CORE SETTINGS ---
 layout {
-    gaps 10
+    gaps 8
     center-focused-column "never"
     default-column-width { proportion 0.5; }
 
@@ -14,7 +14,7 @@ layout {
     background-color "transparent"
 
     focus-ring {
-        width 2
+        width 1
         active-color "#7fc8ff"
         inactive-color "#505050"
     }
@@ -112,7 +112,7 @@ layer-rule {
 
 // 1. Reglas Globales (Aplican a todas las ventanas)
 window-rule {
-    geometry-corner-radius 7
+    geometry-corner-radius 8
     clip-to-geometry true
     opacity 0.90
     
