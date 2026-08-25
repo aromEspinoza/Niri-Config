@@ -1,6 +1,7 @@
 binds {
     //Mod+Ctrl+7 { show-hotkey-overlay; }
 
+
     Mod5+braceleft  { spawn "wtype" "^"; }
     Mod5+braceright { spawn "wtype" "`"; }
 
@@ -9,6 +10,7 @@ binds {
     Mod+Escape { spawn "noctalia" "msg" "panel-toggle" "session"; }
     Mod+Space { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
     Mod+Alt+Period { spawn "noctalia" "msg" "panel-toggle" "control-center" "[tab]"; }
+    Mod+Tab { spawn "noctalia" "msg" "window-switcher"; }
 
     XF86AudioRaiseVolume  { spawn "noctalia" "msg" "volume-up"; }
     XF86AudioLowerVolume  { spawn "noctalia" "msg" "volume-down"; }
